@@ -12,9 +12,9 @@ class login extends CI_Model
     public function leerUser($usuario, $contrasena)
     {
 
-        $this->db->where('user', $usuario);
+        $this->db->where('usuario', $usuario);
         $this->db->where('contrasena', $contrasena);
-        $query = $this->db->get('usuarios');
+        $query = $this->db->get('admin');
 
         if ($query->num_rows() > 0) {
 

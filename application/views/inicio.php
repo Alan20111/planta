@@ -25,7 +25,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 					id="icon-nav">
 				<ul class="navbar nav justify-content-center">
 					<li class="nav-item me-5 ms-2">
-						<a class="fs-5 nav-link m-0 link-warning" href="<?= base_url(); ?>index.php/Admin">Inicio</a>
+						<a class="fs-5 nav-link m-0 link-warning" href="<?= base_url(); ?>index.php/Admin/inicio">Inicio</a>
 					</li>
 					<li class="nav-item me-0">
 						<a class="fs-5 nav-link m-0 link-warning"
@@ -37,7 +37,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 	</header>
 
 	<main class="mx-auto">
-		<div class="input-group m-3">
+		<div class="input-group my-3">
 			<span class="input-group-text border-warning" id="basic-addon1"><svg xmlns="http://www.w3.org/2000/svg"
 					width="16" height="16" fill="#E2B500" class="bi bi-table" viewBox="0 0 16 16">
 					<path
@@ -68,7 +68,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 		</div>
 		<div class="row">
 			<div class="col-6">
-				<div class="m-3">
+				<div class="me-3">
 					<ul class="list-group list-group-flush">
 						<li class="list-group-item list-group-item-action list-group-item-light rounded-3">La central
 							20/20/34<button class="float-end btn btn-warning">Inspeccionar</button></li>

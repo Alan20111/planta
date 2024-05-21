@@ -25,7 +25,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 					id="icon-nav">
 				<ul class="navbar nav justify-content-center">
 					<li class="nav-item me-5 ms-2">
-						<a class="fs-5 nav-link m-0 link-warning" href="<?= base_url(); ?>index.php/Admin">Inicio</a>
+						<a class="fs-5 nav-link m-0 link-warning" href="<?= base_url(); ?>index.php/Admin/inicio">Inicio</a>
 					</li>
 					<li class="nav-item me-0">
 						<a class="fs-5 nav-link m-0 link-warning"
@@ -72,6 +72,10 @@ defined('BASEPATH') or exit('No direct script access allowed');
 							<label for="exampleFormControlInput1" class="form-label fs-6 fw-medium">Contraseña:</label>
 							<input type="text" class="form-control focus-ring focus-ring-warning border-warning-subtle"
 								id="exampleFormControlInput1" placeholder="Escriba una contraseña. . .">
+						</div>
+						<div class="mb-2">
+							<button class="float-end btn btn-warning m-3">Editar</button>
+							<button class="float-end btn btn-warning m-3">Actualizar</button>
 						</div>
 					</div>
 				</div>

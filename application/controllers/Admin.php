@@ -10,7 +10,7 @@ class Admin extends CI_Controller
 	}
 	public function index()
 	{
-		$this->load->view('inicio');
+		$this->load->view('login');
 	}
 	function Inicio()
 	{
@@ -19,5 +19,22 @@ class Admin extends CI_Controller
 	function Admin()
 	{
 		$this->load->view('admin');
+	}
+	public function login()
+	{
+		$user = $this->input->post('user');
+		$contrasena = $this->input->post('contrasena');
+
+		$checkUser = $this->login->leerUser($user, $contrasena);
+
+		if ($checkUser) {
+			$data = array(
+				'user' => $checkUser->user,
+				'status' => 'true'
+			);
+		} else {
+			$data = array('Status' => 'False');
+		}
+		echo json_encode($data, JSON_NUMERIC_CHECK);
 	}
 }
