@@ -6,6 +6,7 @@ class Admin extends CI_Controller
 	public function __construct()
 	{
 		parent::__construct();
+		$this->load->model('login');
 		$this->load->helper('url');
 	}
 	public function index()
@@ -22,10 +23,10 @@ class Admin extends CI_Controller
 	}
 	public function login()
 	{
-		$user = $this->input->post('user');
+		$usuario = $this->input->post('usuario');
 		$contrasena = $this->input->post('contrasena');
 
-		$checkUser = $this->login->leerUser($user, $contrasena);
+		$checkUser = $this->login->leerUser($usuario, $contrasena);
 
 		if ($checkUser) {
 			$data = array(

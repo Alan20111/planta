@@ -1,15 +1,18 @@
 const base_url = "http://localhost/planta/";
 
-var usuario_login = document.getElementById('usuario_login');
-var contrasena_js = document.getElementById('contrasena_login');
+
 
 function loginUser() {
+    var usuario = $("#usuario").val();  // Get value from input using jQuery
+    var contrasena = $("#contrasena").val(); // Get value from input using jQuery
+  
     var jsonLogin = {
-        user: document.getElementById('usuario_login'),
-        contrasena: document.getElementById('contrasena_login'),
-    }
+      usuario: usuario,
+      contrasena: contrasena,
+    };
     checkLogin(jsonLogin);
-}
+  }
+  
 function checkLogin(jsonLogin) {
     $.ajax({
         url: base_url + "index.php/Admin/login",
@@ -18,13 +21,16 @@ function checkLogin(jsonLogin) {
         data: jsonLogin,
         success: function (datos, estado, jhrx) {
             if (datos.Status == "False") {
-                localStorage.clear();
+               // localStorage.clear();
                 console.log(datos);
-              //  window.location.href = base_url + "index.php/Admin/";
+                //  window.location.href = base_url + "index.php/Admin/";
             } else {
+               console.log(datos); 
             }
+            console.log(datos);
         },
         error: function (jhrx, estado, errorA) {
+            console.log(estado);
         }
     })
 }
