@@ -21,11 +21,15 @@ defined('BASEPATH') or exit('No direct script access allowed');
 	<header class="p-0 position-fixed w-100 shadow-sm top-0">
 		<nav>
 			<nav class="nav nav-underline h-100">
+				<li class="nav-item  my-auto">
+				<button type="button" class="btn btn-outline-warning rounded-end-5">Cerrar sesíon</button>
+				</li>
 				<img src="<?= base_url() ?>public/img/Trefoods logo-largo.jpg" alt="" class="img-fluid mt-3 ms-2"
 					id="icon-nav">
 				<ul class="navbar nav justify-content-center">
 					<li class="nav-item me-5 ms-2">
-						<a class="fs-5 nav-link m-0 link-warning" href="<?= base_url(); ?>index.php/Admin/inicio">Inicio</a>
+						<a class="fs-5 nav-link m-0 link-warning"
+							href="<?= base_url(); ?>index.php/Admin/inicio">Inicio</a>
 					</li>
 					<li class="nav-item me-0">
 						<a class="fs-5 nav-link m-0 link-warning"
@@ -71,17 +75,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 				<div class="me-3">
 					<ul class="list-group list-group-flush">
 						<li class="list-group-item list-group-item-action list-group-item-light rounded-3">La central
-							20/20/34<button class="float-end btn btn-warning">Inspeccionar</button></li>
-						<li class="list-group-item list-group-item-action list-group-item-light rounded-3">La central
-							20/20/34<button class="float-end btn btn-warning">Inspeccionar</button></li>
-						<li class="list-group-item list-group-item-action list-group-item-light rounded-3">La central
-							20/20/34<button class="float-end btn btn-warning">Inspeccionar</button></li>
-						<li class="list-group-item list-group-item-action list-group-item-light rounded-3">La central
-							20/20/34<button class="float-end btn btn-warning">Inspeccionar</button></li>
-						<li class="list-group-item list-group-item-action list-group-item-light rounded-3">La central
-							20/20/34<button class="float-end btn btn-warning">Inspeccionar</button></li>
-						<li class="list-group-item list-group-item-action list-group-item-light rounded-3">La central
-							20/20/34<button class="float-end btn btn-warning">Inspeccionar</button></li>
+							20/20/34<button class="float-end btn btn-warning rounded-pill">Inspeccionar</button></li>
 					</ul>
 				</div>
 			</div>
@@ -98,4 +92,6 @@ defined('BASEPATH') or exit('No direct script access allowed');
 </body>
 
 </html>
+<script src="<?= base_url(); ?>public/js/jquery-3.7.1.min.js"></script>
+<script src="<?= base_url(); ?>public/js/inicio.js"></script>
 <script src="<?= base_url(); ?>public/bootstrap/js/bootstrap.min.js"></script>
