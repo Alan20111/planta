@@ -7,13 +7,13 @@ defined('BASEPATH') or exit('No direct script access allowed');
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Inicio - MiPlaza</title>
+	<title>Inicio - TreFoods</title>
 	<link rel="stylesheet" href="<?= base_url() ?>public/bootstrap/css/bootstrap.min.css">
 	<meta name="description"
 		content="Información sobre el super mercado miplaza como lo es el catalago de miplaza, ubicacion de miplaza y valores de miplaza">
 	<link rel="stylesheet" href="<?= base_url() ?>public/css/header.css">
 	<link rel="stylesheet" href="<?= base_url() ?>public/css/inicio/index.css">
-	<link rel="icon" href="<?= base_url() ?>public/img/logp-tree.png" type="image/x-icon">
+	<link rel="icon" href="<?= base_url() ?>public/img/Trefoods logo.png" type="image/x-icon">
 	<meta name="theme-color" content="#f7f7f7">
 </head>
 
@@ -50,7 +50,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 				<p class="p-0 m-0 ms-2">Fecha</p>
 			</span>
 			<input type="date" class="form-control border-warning focus-ring focus-ring-warning"
-				placeholder="Busqueda. . ." aria-label="Username" aria-describedby="basic-addon1">
+				placeholder="Busqueda. . ." aria-label="Username" aria-describedby="basic-addon1" id="date-input">
 			<span class="input-group-text border-warning" id="basic-addon1"><svg xmlns="http://www.w3.org/2000/svg"
 					width="16" height="16" fill="#E2B500" class="bi bi-person-fill-up" viewBox="0 0 16 16">
 					<path
@@ -61,10 +61,8 @@ defined('BASEPATH') or exit('No direct script access allowed');
 				<p class="p-0 m-0 ms-2">Exportador</p>
 			</span>
 			<select class="form-select border-warning focus-ring focus-ring-warning"
-				aria-label="Default select example">
-				<option value="Mi plaza" selected>Todos</option>
-				<option value="La central" class="list-group-item list-group-item-action list-group-item-light">La
-					central</option>
+				aria-label="Default select example" id="exp">
+				<option value="" selected>Todos</option>
 				<option value="Alpes I">Alpes I</option>
 				<option value="Alpes II">Alpes II</option>
 				<option value="ALpina">Alpina</option>
@@ -72,11 +70,8 @@ defined('BASEPATH') or exit('No direct script access allowed');
 		</div>
 		<div class="row">
 			<div class="col-6">
-				<div class="me-3">
-					<ul class="list-group list-group-flush">
-						<li class="list-group-item list-group-item-action list-group-item-light rounded-3">La central
-							20/20/34<button class="float-end btn btn-warning rounded-pill">Inspeccionar</button></li>
-					</ul>
+				<div class="me-3" id="list-data">
+					
 				</div>
 			</div>
 			<div class="col-6">

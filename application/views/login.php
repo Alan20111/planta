@@ -9,7 +9,8 @@
     <meta name="description"
         content="Información sobre el super mercado miplaza como lo es el catalago de miplaza, ubicacion de miplaza y valores de miplaza">
     <link rel="stylesheet" href="<?= base_url() ?>public/css/login.css">
-    <link rel="icon" href="<?= base_url() ?>public/img/logp-tree.png" type="image/x-icon">
+    <link rel="icon" href="<?= base_url() ?>public/img/Trefoods logo.png" type="image/x-icon">
+
     <meta name="theme-color" content="#f7f7f7">
 </head>
 

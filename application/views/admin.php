@@ -7,13 +7,13 @@ defined('BASEPATH') or exit('No direct script access allowed');
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Inicio - MiPlaza</title>
+	<title>Admin - Trefoods</title>
 	<link rel="stylesheet" href="<?= base_url() ?>public/bootstrap/css/bootstrap.min.css">
 	<meta name="description"
 		content="Información sobre el super mercado miplaza como lo es el catalago de miplaza, ubicacion de miplaza y valores de miplaza">
 	<link rel="stylesheet" href="<?= base_url() ?>public/css/header.css">
 	<link rel="stylesheet" href="<?= base_url() ?>public/css/inicio/index.css">
-	<link rel="icon" href="<?= base_url() ?>public/img/logp-tree.png" type="image/x-icon">
+	<link rel="icon" href="<?= base_url() ?>public/img/Trefoods logo.png" type="image/x-icon">
 	<meta name="theme-color" content="#f7f7f7">
 </head>
 

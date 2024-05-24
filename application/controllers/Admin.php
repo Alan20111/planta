@@ -45,11 +45,17 @@ class Admin extends CI_Controller
 	}
 	public function readData()
 	{
-		$tarjetas = $this->inicio_model->readCards();
+		$pedidos = $this->inicio_model->readCardsPedidos();
+		$exportador = $this->inicio_model->readCardsExportador();
+		$peticiones = $this->inicio_model->readCardsPeticiones();
+		$productos = $this->inicio_model->readCardsProductos();
 		$formData = array();
-		if ($tarjetas) {
+		if ($pedidos && $exportador && $peticiones && $productos) {
 			$formData["status"] = 'success';
-			$formData["tarjetas"] = $tarjetas;
+			$formData["pedidos"] = $pedidos;
+			$formData["exportador"] = $exportador;
+			$formData["peticiones"] = $peticiones;
+			$formData["productos"] = $productos;
 		} else {
 			$formData["status"] = 'error';
 		}
