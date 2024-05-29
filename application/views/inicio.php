@@ -22,7 +22,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 		<nav>
 			<nav class="nav nav-underline h-100">
 				<li class="nav-item  my-auto">
-				<button type="button" class="btn btn-outline-warning rounded-end-5">Cerrar sesíon</button>
+				<button type="button" class="btn btn-outline-warning rounded-end-5" onclick="close_session()">Cerrar sesíon</button>
 				</li>
 				<img src="<?= base_url() ?>public/img/Trefoods logo-largo.jpg" alt="" class="img-fluid mt-3 ms-2"
 					id="icon-nav">
@@ -42,7 +42,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 	<main class="mx-auto">
 		<div class="input-group my-3">
-			<span class="input-group-text border-warning" id="basic-addon1"><svg xmlns="http://www.w3.org/2000/svg"
+			<span class="input-group-text border-warning  rounded-pill rounded-end-0" id="basic-addon1"><svg xmlns="http://www.w3.org/2000/svg"
 					width="16" height="16" fill="#E2B500" class="bi bi-table" viewBox="0 0 16 16">
 					<path
 						d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2zm15 2h-4v3h4zm0 4h-4v3h4zm0 4h-4v3h3a1 1 0 0 0 1-1zm-5 3v-3H6v3zm-5 0v-3H1v2a1 1 0 0 0 1 1zm-4-4h4V8H1zm0-4h4V4H1zm5-3v3h4V4zm4 4H6v3h4z" />
@@ -60,7 +60,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 				</svg>
 				<p class="p-0 m-0 ms-2">Exportador</p>
 			</span>
-			<select class="form-select border-warning focus-ring focus-ring-warning"
+			<select class="form-select border-warning focus-ring focus-ring-warning rounded-pill rounded-start-0"
 				aria-label="Default select example" id="exp">
 				<option value="" selected>Todos</option>
 				<option value="Alpes I">Alpes I</option>
@@ -71,7 +71,6 @@ defined('BASEPATH') or exit('No direct script access allowed');
 		<div class="row">
 			<div class="col-6">
 				<div class="me-3" id="list-data">
-					
 				</div>
 			</div>
 			<div class="col-6">
@@ -88,5 +87,6 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 </html>
 <script src="<?= base_url(); ?>public/js/jquery-3.7.1.min.js"></script>
+<script src="<?= base_url(); ?>public/js/home.js"></script>
 <script src="<?= base_url(); ?>public/js/inicio.js"></script>
 <script src="<?= base_url(); ?>public/bootstrap/js/bootstrap.min.js"></script>

@@ -1,48 +1,22 @@
-const base_url = "http://localhost/planta/";
-
 var jsonmain;
-loginUser();
-function loginUser() {
-    var usuario = localStorage.getItem('usuario');
-    var contrasena = localStorage.getItem('contrasena');
 
-    var jsonLogin = {
-        usuario: usuario,
-        contrasena: contrasena
-    }
-    checkLogin(jsonLogin);
-}
-function checkLogin(jsonLogin) {
-    $.ajax({
-        url: base_url + "index.php/Admin/login",
-        dataType: "json",
-        type: "post",
-        data: jsonLogin,
-        success: function (datos, estado, jhrx) {
-            if (datos.Status == "False") {
-                localStorage.clear();
-                window.location.href = base_url + "index.php/Admin/";
-            } else {
-            }
-        },
-        error: function (jhrx, estado, errorA) {
-        }
-    })
-}
 loadData();
+
 function loadData() {
     $.ajax({
-        url: base_url + "index.php/Admin/readData",
+        url: "http://localhost/planta/index.php/Admin/readData",
         dataType: "json",
         type: "post",
         data: {},
         success: function (datos, estado, jhrx) {
             if (datos.status == 'success') {
-                console.log(datos);
-                loadElements(datos)
                 jsonmain = datos;
+                console.log(jsonmain);
+                loadElements(datos);
+
             }
-        }, error: function (jhrx, estado, errorA) {
+        },
+        error: function (jhrx, estado, errorA) {
             console.log(estado);
         },
     });
@@ -52,88 +26,117 @@ function loadElements(jsonData) {
     pedidos(jsonData.pedidos);
     exportador(jsonData.exportador);
 }
+
 function pedidos(jsonPedidos) {
     const listGroup = document.createElement('ul');
-
     listGroup.classList.add('list-group', 'list-group-flush');
 
     const parentElement = document.getElementById('list-data');
-
     parentElement.innerHTML = '';
+
+    // Crear un objeto para acceso rápido a los nombres de los exportadores
+    const exportadoresMap = {};
+    jsonmain.exportador.forEach(exp => {
+        exportadoresMap[exp.id] = exp.nombre;
+    });
+
     for (let i = 0; i < jsonPedidos.length; i++) {
         const elementData = jsonPedidos[i];
 
         const listItem = document.createElement('li');
         listItem.classList.add('list-group-item', 'list-group-item-action', 'list-group-item-light', 'rounded-3');
 
+        // Obtener el nombre del exportador usando el ID
+        const nombreExportador = exportadoresMap[elementData.id_exp] || 'Desconocido';
+
         listItem.innerHTML = `
-        La central ${elementData.id}/${elementData.id_exp}/${elementData.fecha}
-        <button class="float-end btn btn-warning rounded-pill">Previsualizar</button>
-      `;
+            ${nombreExportador} ${elementData.fecha}
+            <button class="float-end btn btn-warning rounded-pill">Previsualizar</button>
+        `;
 
         listGroup.appendChild(listItem);
     }
 
     parentElement.appendChild(listGroup);
 }
-function pedidos(jsonPedidos, date, id_exp) {
-    const listGroup = document.createElement('ul');
 
+function separateDate(dateString) {
+    const dateParts = dateString.split('-');
+    if (dateParts.length !== 3) {
+        throw new Error('Invalid date format');
+    }
+
+    // Devolver la fecha en el formato 'YYYY-MM-DD' sin cambios
+    return dateString;
+}
+
+function pedidos_filtro(jsonPedidos, fecha, exp) {
+    try {
+        fecha = fecha ? separateDate(fecha) : ''; // Verificar y convertir la fecha al formato correcto solo si fecha no es vacío
+    } catch (error) {
+        console.error(error);
+        return;
+    }
+
+    const listGroup = document.createElement('ul');
     listGroup.classList.add('list-group', 'list-group-flush');
 
     const parentElement = document.getElementById('list-data');
-
     parentElement.innerHTML = '';
+
+    // Crear un objeto para acceso rápido a los nombres de los exportadores
+    const exportadoresMap = {};
+    jsonmain.exportador.forEach(exp => {
+        exportadoresMap[exp.id] = exp.nombre;
+    });
+
+    let found = false; // Indicador para verificar si se encuentra algún pedido
+
     for (let i = 0; i < jsonPedidos.length; i++) {
-        if (date != null && id_exp != null) {
-            if (jsonPedidos[i].id_exp == id_exp && jsonPedidos[i].fecha == date) {
-                const elementData = jsonPedidos[i];
+        const elementData = jsonPedidos[i];
 
-                const listItem = document.createElement('li');
-                listItem.classList.add('list-group-item', 'list-group-item-action', 'list-group-item-light', 'rounded-3');
+        // Convertir exp a cadena para comparación
+        const expStr = exp.toString();
+        const idExpStr = elementData.id_exp.toString();
 
-                listItem.innerHTML = `
-        La central ${elementData.id}/${elementData.id_exp}/${elementData.fecha}
-        <button class="float-end btn btn-warning rounded-pill">Previsualizar</button>
-      `;
+        // Verificar si la fecha y el exportador coinciden con los parámetros proporcionados
+        if ((fecha === '' || elementData.fecha === fecha) && (exp === 'Todos' || idExpStr === expStr)) {
+            found = true; // Se encontró al menos un pedido
+            const listItem = document.createElement('li');
+            listItem.classList.add('list-group-item', 'list-group-item-action', 'list-group-item-light', 'rounded-3');
 
-                listGroup.appendChild(listItem);
-            }
-        } else {
-            if (jsonPedidos[i].id_exp == id_exp || jsonPedidos[i].fecha == date) {
-                const elementData = jsonPedidos[i];
+            // Obtener el nombre del exportador usando el ID
+            const nombreExportador = exportadoresMap[elementData.id_exp] || 'Desconocido';
 
-                const listItem = document.createElement('li');
-                listItem.classList.add('list-group-item', 'list-group-item-action', 'list-group-item-light', 'rounded-3');
+            listItem.innerHTML = `
+                ${nombreExportador} ${elementData.fecha}
+                <button class="float-end btn btn-warning rounded-pill">Previsualizar</button>
+            `;
 
-                listItem.innerHTML = `
-        La central ${elementData.id}/${elementData.id_exp}/${elementData.fecha}
-        <button class="float-end btn btn-warning rounded-pill">Previsualizar</button>
-      `;
-
-                listGroup.appendChild(listItem);
-            }
+            listGroup.appendChild(listItem);
         }
-
     }
 
-    parentElement.appendChild(listGroup);
+    if (found) {
+        parentElement.appendChild(listGroup);
+    } else {
+        const noPedidosMessage = document.createElement('p');
+        noPedidosMessage.classList.add('fs-5', 'text-center', 'my-3');
+        noPedidosMessage.textContent = 'No hay ningún pedido';
+        parentElement.appendChild(noPedidosMessage);
+    }
 }
 
 function exportador(jsonexportador) {
-    // Get the existing select element
     const selectElement = document.getElementById('exp');
-
-    // Clear the existing options (optional)
     selectElement.innerHTML = '';
 
-    // Create the default option
     const defaultOption = document.createElement('option');
     defaultOption.text = 'Todos';
-    defaultOption.selected = true; // Set as selected by default
+    defaultOption.value = 'Todos'; // Asegurarse de que el valor sea 'Todos'
+    defaultOption.selected = true;
     selectElement.appendChild(defaultOption);
 
-    // Add options for each exporter in the data
     for (let i = 0; i < jsonexportador.length; i++) {
         const elementData = jsonexportador[i];
 
@@ -143,14 +146,20 @@ function exportador(jsonexportador) {
         selectElement.appendChild(optionElement);
     }
 }
+
 const dateInput = document.getElementById('date-input');
 const expInput = document.getElementById('exp');
 
-
 dateInput.addEventListener('change', function () {
-    var selectedDate = dateInput.value;
-    var selectedExp = expInput.value;
+    const selectedDate = dateInput.value;
+    const selectedExp = expInput.value;
     console.log('Selected date:', selectedDate);
-    pedidos(jsonmain, selectedDate, selectedExp)
-    // Perform actions based on the selected date
+    pedidos_filtro(jsonmain.pedidos, selectedDate, selectedExp);
+});
+
+expInput.addEventListener('change', function () {
+    const selectedDate = dateInput.value;
+    const selectedExp = expInput.value;
+    console.log('Selected exp:', selectedExp);
+    pedidos_filtro(jsonmain.pedidos, selectedDate, selectedExp);
 });
