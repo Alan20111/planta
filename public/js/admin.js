@@ -1,10 +1,3 @@
-$('#add-item-btn').click(function () {
-    // Crear el elemento li
-    var newItem = $('<li class="list-group-item">An item<button class="float-end btn btn-outline-danger me-2 py-0 rounded-pill">Eliminar</button><button class="float-end btn btn-warning me-2 py-0 rounded-pill">Editar</button></li>');
-
-    // Agregar el nuevo elemento al ul
-    $('.list-group').append(newItem);
-});
 
 var jsonmain;
 
