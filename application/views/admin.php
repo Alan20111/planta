@@ -53,7 +53,7 @@
 
 		<div class="div-1">
 			<p class="fs-4 fw-medium">Exportadores:</p>
-			<button class="btn btn-primary showPopUp">Show Pop-up</button>
+			<button class="btn btn-outline-warning showPopUp rounded-pill mb-3">Agregar exportador</button>
 
 			<ul class="list-group list-group-flush" id="list-exp"></ul>
 		</div>
